@@ -11,7 +11,7 @@
 
 ### Documentation
 
-Coming soon
+- [JSDoc](docs/index.html)
 
 ### Setup
 
