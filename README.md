@@ -22,7 +22,7 @@ Coming soon
 
 #### Running the app
 
-!!! Run each of the command below in a new terminal and in the order they appear !!
+!!! Run each of the command below in a new terminal and in the order they appear !!!
 
 - `npm run server`
 - `npm run logger`
