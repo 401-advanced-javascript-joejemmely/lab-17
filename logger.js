@@ -9,9 +9,7 @@ const socket = new net.Socket();
 const PORT = process.env.PORT;
 const CLIENT_NAME = process.env.CLIENT_NAME || 'localhost';
 
-socket.name = 'test';
-
-socket.connect(PORT, CLIENT_NAME, 'test', () => {
+socket.connect(PORT, CLIENT_NAME, () => {
   console.log(`Listening on ${PORT}`);
 });
 
