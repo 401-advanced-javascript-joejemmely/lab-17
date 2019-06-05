@@ -2,17 +2,20 @@
 
 require('dotenv').config();
 
+const fs = require('fs');
 const { promisify } = require('util');
 
-const fs = require('fs');
+// Promisify readFile and writeFile
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
 
 const net = require('net');
+const TCPEvent = require('./lib/tcp-event.js');
 
+// Create a new socket
 const socket = new net.Socket();
-const PORT = process.env.PORT;
-const CLIENT_NAME = 'localhost';
+const PORT = process.env.PORT || 3001;
+const CLIENT_NAME = process.env.CLIENT_NAME || 'localhost';
 
 socket.connect(PORT, CLIENT_NAME, () => {
   console.log(`Connected on ${PORT}`);
@@ -20,14 +23,31 @@ socket.connect(PORT, CLIENT_NAME, () => {
 
 const alterFile = async file => {
   try {
-    const data = await readFileAsync(file);
-    const text = data.toString().toUpperCase();
-    await writeFileAsync(file, Buffer.from(text));
+    const buffer = await readFileAsync(file);
+    const upperCasedContent = buffer.toString().toUpperCase();
+    await writeFileAsync(file, Buffer.from(upperCasedContent));
 
     // It may be worth considering fs.watchFile instead of the following
-    await socket.write(`WRITE:${text} was written to ${file}`);
+    await socket.write(
+      JSON.stringify(
+        new TCPEvent('SAVE', {
+          data: upperCasedContent,
+          file,
+          message: 'This file was saved',
+        })
+      )
+    );
+    await socket.end();
   } catch (error) {
-    socket.write(`ERROR:${error.code}`);
+    socket.write(
+      JSON.stringify(
+        new TCPEvent('ERROR', {
+          data: error,
+          message: 'Something went horribly wrong...',
+        })
+      )
+    );
+    socket.end();
   }
 };
 
