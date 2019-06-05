@@ -23,6 +23,8 @@ const alterFile = async file => {
     const data = await readFileAsync(file);
     const text = data.toString().toUpperCase();
     await writeFileAsync(file, Buffer.from(text));
+
+    // It may be worth considering fs.watchFile instead of the following
     await socket.write(`WRITE:${text} was written to ${file}`);
   } catch (error) {
     socket.write(`ERROR:${error.code}`);
