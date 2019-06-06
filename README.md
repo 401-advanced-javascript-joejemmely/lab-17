@@ -63,4 +63,8 @@ Parse a buffer into a new TCPEvent instance
 
 #### Tests
 
-- How do you run tests? `npm test`
+- There's not test yet
+
+### UML
+
+![uml](./uml.jpg)
