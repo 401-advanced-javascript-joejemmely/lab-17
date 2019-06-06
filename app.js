@@ -15,9 +15,9 @@ const TCPEvent = require('./lib/tcp-event.js');
 // Create a new socket
 const socket = new net.Socket();
 const PORT = process.env.PORT || 3001;
-const CLIENT_NAME = process.env.CLIENT_NAME || 'localhost';
+const SERVER = process.env.SERVER || 'localhost';
 
-socket.connect(PORT, CLIENT_NAME, () => {
+socket.connect(PORT, SERVER, () => {
   console.log(`Connected on ${PORT}`);
 });
 

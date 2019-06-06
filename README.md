@@ -11,14 +11,47 @@
 
 ### Documentation
 
-- [JSDoc](docs/index.html)
+<a name="TCPEvent"></a>
+
+## TCPEvent
+
+Class representing a TCPEvent
+
+**Kind**: global class
+
+- [TCPEvent](#TCPEvent)
+  - [new TCPEvent(event, payload)](#new_TCPEvent_new)
+  - [.parse(buffer)](#TCPEvent.parse)
+
+<a name="new_TCPEvent_new"></a>
+
+### new TCPEvent(event, payload)
+
+Create a TCPEvent
+
+| Param   | Type            |
+| ------- | --------------- |
+| event   | <code>\*</code> |
+| payload | <code>\*</code> |
+
+<a name="TCPEvent.parse"></a>
+
+### TCPEvent.parse(buffer)
+
+Parse a buffer into a new TCPEvent instance
+
+**Kind**: static method of [<code>TCPEvent</code>](#TCPEvent)
+
+| Param  | Type            |
+| ------ | --------------- |
+| buffer | <code>\*</code> |
 
 ### Setup
 
 #### `.env` requirements
 
 - `PORT` - Port Number
-- `CLIENT_NAME` - Client name
+- `SERVER` - Server address
 
 #### Running the app
 

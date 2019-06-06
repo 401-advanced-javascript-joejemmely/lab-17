@@ -7,9 +7,9 @@ const TCPEvent = require('./lib/tcp-event.js');
 
 const socket = new net.Socket();
 const PORT = process.env.PORT;
-const CLIENT_NAME = process.env.CLIENT_NAME || 'localhost';
+const SERVER = process.env.SERVER || 'localhost';
 
-socket.connect(PORT, CLIENT_NAME, () => {
+socket.connect(PORT, SERVER, () => {
   console.log(`Listening on ${PORT}`);
 });
 
